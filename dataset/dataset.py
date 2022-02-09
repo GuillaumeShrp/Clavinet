@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 def create_midi_vector(paths, aug=range(1)):
     songs = []
     skipped = []
-    for f in tqdm(paths):
+    for f in tqdm(paths): #tqdm -> display progress bar
         try:
             s = build_dataset(f, False, aug)
             songs.append(s)
@@ -31,7 +31,7 @@ def create_midi_vector(paths, aug=range(1)):
         
 files = glob.glob("bach/chor[0-9][0-9][0-9].krn.mid")
 Xtr, Xte = train_test_split(files, test_size=50, random_state=99)
-jsb_train, train_skip = create_midi_vector(Xtr)
+jsb_train, train_skip = create_midi_vector(Xtr) #extract midi and converte to vector
 jsb_test, test_skip = create_midi_vector(Xte)
 
 
@@ -41,7 +41,7 @@ nmd_train, train_skip = create_midi_vector(Xtr)
 nmd_test, test_skip = create_midi_vector(Xte)
 
 
-pickle.dump(jsb_train, open("jsb_train.pkl", "wb"))
+pickle.dump(jsb_train, open("jsb_train.pkl", "wb")) #save a python object
 pickle.dump(jsb_test, open("jsb_test.pkl", "wb"))
 pickle.dump(nmd_train, open("nmd_train.pkl", "wb"))
 pickle.dump(nmd_test, open("nmd_test.pkl", "wb"))

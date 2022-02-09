@@ -74,8 +74,8 @@ def build_dataset(song_path, include_velocity=True, augment=range(1)):
     # keep only segments that have more than 5 note events
     bars = [np.stack(b) for b in bars if len(b)>= 5]
     
-    p_ohe = OneHotEncoder(89)
-    t_ohe = OneHotEncoder(33)
+    p_ohe = OneHotEncoder(89) #total pitch range
+    t_ohe = OneHotEncoder(33) #quantification of a whole note
     
     
     X = []
